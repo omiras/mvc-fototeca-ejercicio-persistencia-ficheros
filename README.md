@@ -25,3 +25,14 @@ const fs = require('fs')
 fs.writeFileSync('file.json', JSON.stringify(arrayDeObjetosAGuardar));
 ```
 
+A continuación, la tabla de endpoints generada tras ejecutar el script con todas las rutas:
+
+```
+Aplicación:
+-----------
+['GET', '/', ejecute la función anónima
+definida en este mismo fichero]
+['GET', '/imagenes', getAllImages]
+['GET', '/imagenes/anadir', getForm]
+['POST', '/imagenes/anadir', postForm]
+```

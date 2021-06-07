@@ -1,3 +1,5 @@
+const fs = require('fs')
+const path = require('path')
 
 class Imagen {
 
@@ -10,6 +12,11 @@ class Imagen {
     }
 
     static addImagen(titulo, url, fecha) {
+
+        // 1. Recuperar todos los datos del fichero
+        // 2. Modificar el array de objetos recuperado
+        // 3. Volver a escribir el fichero con los datos actualizados 
+
         // crear una nueva Imagen
         const imagen = new Imagen(titulo, url, fecha)
         // añadirla a la 'bbddImagenes'
@@ -21,7 +28,8 @@ class Imagen {
     }
 
     static obtenerImagenes() {
-        return this.bbddImagenes;
+        const data = fs.readFileSync(path.join(__dirname, "imagenes.json"));
+        return JSON.parse(data);
     }
 }
 
