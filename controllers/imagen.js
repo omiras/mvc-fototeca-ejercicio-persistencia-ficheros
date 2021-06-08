@@ -21,7 +21,7 @@ exports.postForm = (req, res) => {
 
     // Si la imagen no está repetida, la añadimos a la base de datos y le damos un mensaje de OK al usuario
     if (!esRepetida) {
-        Imagen.addImagen(req.body.title, req.body.url, req.body.fecha);
+        Imagen.addImagen(req.body.titulo, req.body.url, req.body.fecha);
       
         return res.redirect('/');
     }

@@ -1,9 +1,10 @@
 const fs = require('fs')
 const path = require('path')
+const rutaFichero = path.join(__dirname, "imagenes.json");
 
 class Imagen {
 
-    static bbddImagenes = [];
+    // La ruta a las de datos de fichero, es única para la clase Imagen
 
     constructor(titulo, url, fecha) {
         this.titulo = titulo;
@@ -14,21 +15,25 @@ class Imagen {
     static addImagen(titulo, url, fecha) {
 
         // 1. Recuperar todos los datos del fichero
-        // 2. Modificar el array de objetos recuperado
-        // 3. Volver a escribir el fichero con los datos actualizados 
+        const imagenes = this.obtenerImagenes();
 
         // crear una nueva Imagen
+        // 2. Modificar el array de objetos recuperado. Tenemos que añadir la nueva imagen
+
         const imagen = new Imagen(titulo, url, fecha)
-        // añadirla a la 'bbddImagenes'
-        this.bbddImagenes.push(imagen);
+        imagenes.push(imagen);
+
+        // 3. Volver a escribir el fichero con los datos actualizados 
+        fs.writeFileSync(rutaFichero, JSON.stringify(imagenes));
     }
 
     static esImagenRepetida(url) {
-        return this.bbddImagenes.some(imagen => imagen.url == url);
+        const imagenes = this.obtenerImagenes();
+        return imagenes.some(imagen => imagen.url == url);
     }
 
     static obtenerImagenes() {
-        const data = fs.readFileSync(path.join(__dirname, "imagenes.json"));
+        const data = fs.readFileSync(rutaFichero);
         return JSON.parse(data);
     }
 }
