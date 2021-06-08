@@ -36,6 +36,8 @@ definida en este mismo fichero]
 ['GET', '/imagenes/anadir', getForm]
 ['POST', '/imagenes/anadir', postForm]
 
+```
+
 ## Requisito 3
 Transforma tu práctica de Fototeca al MVC. Alternativamente, puedes continuar con esta práctica.
 
